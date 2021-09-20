@@ -1,0 +1,15 @@
+Parsovanie dát zo stránky Hyperia
+Vytvorte konzolový skript v Pythone verzie 3+, ktorý dokáže rozparsovať stránku https://www.hyperia.sk/kariera a vytiahne kompletný zoznam pracovných ponúk. Pre každú položku doplňte aj kontaktný email z detailu ponuky.
+Výstup uložte do súboru v JSON formáte.
+Príklad výstupného formátu:
+[
+{
+ “title”: “Python developer - junior”,
+“place”: “Slovensko”,
+“salary”: “od 1000 €”,
+“contract_type”: “dohoda”,
+“contact_email”: “hr@hyperia.sk”
+},
+...
+]
+Pri implementácií sa sústreďte na stabilitu riešenia a dátovú konzistentnosť. Zaujíma nás Váš prístup k OOP,  čistote a prehľadnosti kódu.
