@@ -24,10 +24,12 @@ for link in link_list:
     contract_type = soup.find_all('div', class_ = 'col-md-4 icon')[2].text.split(',')
     contact_email = soup.find_all('a', href=re.compile(r"^mailto:"))[0].get('href').split(':')
 
-    print('title:',title)
-    print('place:',place[1])
-    print('salary:',salary[1])
-    print('contract_type:',contract_type[1])
-    print('contact_email:',contact_email[1])
+    print('title:',title.strip())
+    print('place:',place[1].strip())
+    print('salary:',salary[1].strip())
+    print('contract_type:',contract_type[1].strip())
+    print('contact_email:',contact_email[1].strip())
+    scrap_dict = {'title': title,'place': place[1],'salary': salary[1],'contract_type': contract_type[1],'contact_email': contact_email[1]}
     
-    
+    with open('hyp.txt','w',encoding='utf-8') as json_file:
+        json.dump(scrap_dict,json_file,ensure_ascii=False)
