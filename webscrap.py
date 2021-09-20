@@ -18,8 +18,16 @@ print(link_list)
 for link in link_list:
     res = requests.get(link)
     soup = BeautifulSoup(res.content, 'html.parser')
-    title = soup.find_all('h1')
-    contact_email = soup.find_all('a', href=re.compile(r"^mailto:"))
-    print(title)
-    print(contact_email)
+    title = soup.find_all('h1')[0].text.strip()
+    place = soup.find_all('div', class_ = 'col-md-4 icon')[0].text.split(':')
+    salary = soup.find_all('div', class_ = 'col-md-4 icon')[1].text.split('ohodnotenie')
+    contract_type = soup.find_all('div', class_ = 'col-md-4 icon')[2].text.split(',')
+    contact_email = soup.find_all('a', href=re.compile(r"^mailto:"))[0].get('href').split(':')
+
+    print('title:',title)
+    print('place:',place[1])
+    print('salary:',salary[1])
+    print('contract_type:',contract_type[1])
+    print('contact_email:',contact_email[1])
+    
     
