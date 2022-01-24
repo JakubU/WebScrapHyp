@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 url = 'https://www.hyperia.sk/kariera/'
 r = requests.get(url)
 link_list=[]
+data = []
 
 soup = BeautifulSoup(r.content, 'html.parser')
 for a in soup.find_all('a', href=True, class_='arrow-link'):
@@ -29,7 +30,11 @@ for link in link_list:
     print('salary:',salary[1].strip())
     print('contract_type:',contract_type[1].strip())
     print('contact_email:',contact_email[1].strip())
-    scrap_dict = {'title': title,'place': place[1],'salary': salary[1],'contract_type': contract_type[1],'contact_email': contact_email[1]}
-    
-    with open('hyp.txt','w',encoding='utf-8') as json_file:
-        json.dump(scrap_dict,json_file,ensure_ascii=False)
+    scrap = {'title': title,'place': place[1],'salary': salary[1],'contract_type': contract_type[1],'contact_email': contact_email[1]}
+    data.append(scrap)
+
+with open("sample.json", "w", encoding='utf-8' ) as outfile:
+    json.dump(data, outfile, ensure_ascii=False)
+
+with open('hyp.txt','w',encoding='utf-8') as json_file:
+    json.dump(data,json_file,ensure_ascii=False)
